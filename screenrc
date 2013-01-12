@@ -1,0 +1,11 @@
+startup_message off 
+nethack on
+hardstatus on
+hardstatus alwayslastline
+# Disable when working remotely.
+backtick 2 15 15 echo ".........."
+hardstatus string "%{kk} %{-}%{Yk}%D %m-%d-%y%{kk} %{-}%{Wk}%c:%s%{kk}  %{-}[%{Gk}%H%{-} %l] %{kk} %{-}%{wb} %-w %{Wr}[%n %t]%{-} %+w%="
+termcapinfo xterm* ti@:te@
+attrcolor b ".I"
+termcapinfo xterm 'Co#256:AB=\E[48;5;%dm:AF=\E[38;5;%dm'
+defbce "on"
