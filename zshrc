@@ -66,7 +66,9 @@ export PATH="/usr/local/Cellar/ruby/1.9.3-p194/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
 # rbenv
-eval "$(rbenv init -)"
+if [[ -e `which rbenv` ]]; then
+  eval "$(rbenv init -)"
+fi
 
 function breakvpn() {
     gw=`netstat -arn | grep -e '^default' | awk '{print $2}'`
@@ -74,7 +76,9 @@ function breakvpn() {
     sudo route add $1 $gw
 }
 
-sshagent
+if [[ -e `which sshagent` ]]; then
+  sshagent
+fi
 
 export GNUTERM=x11
 
