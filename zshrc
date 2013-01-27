@@ -45,8 +45,17 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space
 
 
-alias ls='ls -FG'
+case `uname` in
+  Linux)
+  alias ls='ls -F --color'
+  ;;
+  *)
+  alias ls='ls -FG'
+  ;;
+esac
+
 alias cd..='cd ..'
+alias t='task'
 
 export EDITOR=vim
 
@@ -81,6 +90,19 @@ if [[ -e `which sshagent` ]]; then
 fi
 
 export GNUTERM=x11
+
+if [[ -e $HOME/nacl_sdk ]]; then
+  export NACL_SDK_ROOT=$HOME/nacl_sdk
+fi
+
+if [[ -e $HOME/go ]]; then
+  export GOROOT=$HOME/go
+  export PATH="$PATH:$GOROOT/bin"
+fi
+
+if [[ -e $HOME/QSTK ]]; then
+  source $HOME/QSTK/local.sh
+fi
 
 if [ -x /usr/local/scripts/ssx-agents ] ;  then
   eval `/usr/local/scripts/ssx-agents $SHELL`
