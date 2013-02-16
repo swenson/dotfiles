@@ -49,7 +49,7 @@ case `uname` in
   Linux)
   alias ls='ls -F --color'
   ;;
-  *)
+  Darwin)
   alias ls='ls -FG'
   ;;
 esac
@@ -102,6 +102,16 @@ fi
 
 if [[ -e $HOME/QSTK ]]; then
   source $HOME/QSTK/local.sh
+fi
+
+if [[ -e $HOME/sage-src ]]; then
+  #SAGE_VERSION=`python -c 'import glob; import os; print(".".join(map(str, sorted([tuple(int(x) for x in (d.split("-")[-1]).split(".")) for d in glob.glob('`
+  #export SAGE_ROOT=$HOME/sage-src/sage-$SAGE_VERSION
+  #export PATH="$SAGE_ROOT:$PATH"
+fi
+
+if [[ -e $HOME/rebar ]]; then
+  export PATH="$PATH:$HOME/rebar"
 fi
 
 if [ -x /usr/local/scripts/ssx-agents ] ;  then
