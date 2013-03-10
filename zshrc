@@ -110,6 +110,11 @@ if [[ -e $HOME/sage-src ]]; then
   #export PATH="$SAGE_ROOT:$PATH"
 fi
 
+if [[ -e /Library/Frameworks/Python.framework/Versions/2.7 ]]; then
+  export PYTHONPATH=/Library/Frameworks/Python.framework/Versions/2.7
+  export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH"
+fi
+
 if [[ -e $HOME/rebar ]]; then
   export PATH="$PATH:$HOME/rebar"
 fi
