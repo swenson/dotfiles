@@ -45,8 +45,17 @@ setopt hist_ignore_all_dups
 setopt hist_ignore_space
 
 
-alias ls='ls -FG'
+case `uname` in
+  Linux)
+  alias ls='ls -F --color'
+  ;;
+  Darwin)
+  alias ls='ls -FG'
+  ;;
+esac
+
 alias cd..='cd ..'
+alias t='task'
 
 export EDITOR=vim
 
@@ -66,7 +75,9 @@ export PATH="/usr/local/Cellar/ruby/1.9.3-p194/bin:$PATH"
 export PATH="$HOME/bin:$PATH"
 
 # rbenv
-eval "$(rbenv init -)"
+if [[ -e `which rbenv` ]]; then
+  eval "$(rbenv init -)"
+fi
 
 function breakvpn() {
     gw=`netstat -arn | grep -e '^default' | awk '{print $2}'`
@@ -74,9 +85,39 @@ function breakvpn() {
     sudo route add $1 $gw
 }
 
-sshagent
+if [[ -e `which sshagent` ]]; then
+  sshagent
+fi
 
 export GNUTERM=x11
+
+if [[ -e $HOME/nacl_sdk ]]; then
+  export NACL_SDK_ROOT=$HOME/nacl_sdk
+fi
+
+if [[ -e $HOME/go ]]; then
+  export GOROOT=$HOME/go
+  export PATH="$PATH:$GOROOT/bin"
+fi
+
+if [[ -e $HOME/QSTK ]]; then
+  source $HOME/QSTK/local.sh
+fi
+
+if [[ -e $HOME/sage-src ]]; then
+  #SAGE_VERSION=`python -c 'import glob; import os; print(".".join(map(str, sorted([tuple(int(x) for x in (d.split("-")[-1]).split(".")) for d in glob.glob('`
+  #export SAGE_ROOT=$HOME/sage-src/sage-$SAGE_VERSION
+  #export PATH="$SAGE_ROOT:$PATH"
+fi
+
+if [[ -e /Library/Frameworks/Python.framework/Versions/2.7 ]]; then
+  export PYTHONPATH=/Library/Frameworks/Python.framework/Versions/2.7
+  export PATH="/Library/Frameworks/Python.framework/Versions/2.7/bin:$PATH"
+fi
+
+if [[ -e $HOME/rebar ]]; then
+  export PATH="$PATH:$HOME/rebar"
+fi
 
 if [ -x /usr/local/scripts/ssx-agents ] ;  then
   eval `/usr/local/scripts/ssx-agents $SHELL`
