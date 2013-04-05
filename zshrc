@@ -51,6 +51,7 @@ case `uname` in
   ;;
   Darwin)
   alias ls='ls -FG'
+  alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
   ;;
 esac
 
@@ -127,7 +128,3 @@ fi
 
 export MAVEN_OPTS=-Xmx1024m
 alias t=$HOME/todo.txt-cli/todo.sh
-
-if [[ -e /Applications ]]; then
-  alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
-fi
