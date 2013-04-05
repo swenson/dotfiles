@@ -127,4 +127,6 @@ fi
 #PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 export MAVEN_OPTS=-Xmx1024m
-alias t=$HOME/todo.txt-cli/todo.sh
+alias t="$HOME/Dropbox/todo/todo.sh"
+
+t ls
