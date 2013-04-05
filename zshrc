@@ -81,3 +81,12 @@ export GNUTERM=x11
 if [ -x /usr/local/scripts/ssx-agents ] ;  then
   eval `/usr/local/scripts/ssx-agents $SHELL`
 fi
+
+#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+export MAVEN_OPTS=-Xmx1024m
+alias t=$HOME/todo.txt-cli/todo.sh
+
+if [[ -e /Applications ]]; then
+  alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+fi
