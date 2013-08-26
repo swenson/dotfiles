@@ -65,7 +65,6 @@ alias t='task'
 export EDITOR=vim
 
 zstyle ':completion:*' use-cache on
-zstyle ':completion:*' cache-path /usr/local/google/home/cswenson/.zsh/cache
 export PATH="$PATH:$HOME/bin"
 export PATH="/usr/local/bin:$PATH"
 alias g=$HOME/g
