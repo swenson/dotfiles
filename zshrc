@@ -51,7 +51,11 @@ case `uname` in
   ;;
   Darwin)
   alias ls='ls -FG'
-  alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl'
+  if [[ -e '/Applications/Sublime Text.app' ]]; then
+    alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl';
+  elif [[ -e '/Applications/Sublime Text 2.app' ]]; then
+    alias subl='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl';
+  fi
   ;;
 esac
 
@@ -130,3 +134,6 @@ export MAVEN_OPTS=-Xmx1024m
 alias t="$HOME/Dropbox/todo/todo.sh"
 
 t ls
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
