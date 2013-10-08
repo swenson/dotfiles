@@ -134,13 +134,17 @@ fi
 #PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=256M"
-alias t="$HOME/Dropbox/todo/todo.sh"
 
 
 # Fix Java to not drive me crazy
 export _JAVA_OPTIONS="-Djava.awt.headless=true"
 
-t ls
-
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
+
+# todo.txt
+if [[ -e $HOME/Dropbox/todo/todo.sh ]]; then
+  alias t="$HOME/Dropbox/todo/todo.sh"
+  t ls
+fi
+
