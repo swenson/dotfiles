@@ -127,10 +127,18 @@ if [ -x /usr/local/scripts/ssx-agents ] ;  then
   eval `/usr/local/scripts/ssx-agents $SHELL`
 fi
 
+if [[ -e /usr/bin/vagrant ]]; then
+  alias vagrant=/usr/bin/vagrant
+fi
+
 #PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-export MAVEN_OPTS=-Xmx1024m
+export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=256M"
 alias t="$HOME/Dropbox/todo/todo.sh"
+
+
+# Fix Java to not drive me crazy
+export _JAVA_OPTIONS="-Djava.awt.headless=true"
 
 t ls
 
