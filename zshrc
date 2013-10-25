@@ -1,7 +1,8 @@
 # Lines configured by zsh-newuser-install
-HISTFILE=~/.histfile
-HISTSIZE=1000
-SAVEHIST=1000
+export HISTFILE=~/.histfile
+export HISTSIZE=10000
+export SAVEHIST=$HISTSIZE
+
 setopt appendhistory autocd extendedglob nomatch
 unsetopt beep notify
 bindkey -e
