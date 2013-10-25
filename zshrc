@@ -45,6 +45,10 @@ reset_prompt
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
 
+function hop() {
+  ssh -t $1 ssh -t $2
+}
+
 
 case `uname` in
   Linux)
