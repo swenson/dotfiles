@@ -152,6 +152,6 @@ export PATH="/usr/local/sbin:$PATH"
 # todo.txt
 if [[ -e $HOME/Dropbox/todo/todo.sh ]]; then
   alias t="$HOME/Dropbox/todo/todo.sh"
-  t ls
+  $HOME/Dropbox/todo/todo.sh ls
 fi
 
