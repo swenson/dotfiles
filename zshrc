@@ -65,7 +65,6 @@ case `uname` in
 esac
 
 alias cd..='cd ..'
-alias t='task'
 
 export EDITOR=vim
 
