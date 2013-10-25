@@ -146,6 +146,9 @@ export _JAVA_OPTIONS="-Djava.awt.headless=true"
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
+# brew sbin
+export PATH="/usr/local/sbin:$PATH"
+
 # todo.txt
 if [[ -e $HOME/Dropbox/todo/todo.sh ]]; then
   alias t="$HOME/Dropbox/todo/todo.sh"
