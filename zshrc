@@ -47,6 +47,7 @@ setopt hist_ignore_space
 
 function hop() {
   ssh -t $1 ssh -t $2
+  #`ipython --no-color-info --quiet --no-pprint --colors=NoColor -c "hop('$1', '$2', '$3')"`
 }
 
 
@@ -154,10 +155,10 @@ if [[ -e $HOME/Dropbox/todo/todo.sh ]]; then
   alias t="$HOME/Dropbox/todo/todo.sh"
   case `hostname` in
     swensonator*)
-      t ls simple
+      $HOME/Dropbox/todo/todo.sh ls simple
       ;;
     *)
-      t ls
+      $HOME/Dropbox/todo/todo.sh ls simple
       ;;
   esac
 fi
