@@ -56,6 +56,7 @@ case `uname` in
   alias ls='ls -F --color'
   ;;
   Darwin)
+  export LSCOLORS=Exfxcxdxbxegedabagacad
   alias ls='ls -FG'
   if [[ -e '/Applications/Sublime Text.app' ]]; then
     alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl';
