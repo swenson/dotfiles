@@ -151,6 +151,11 @@ export PATH="/usr/local/heroku/bin:$PATH"
 # brew sbin
 export PATH="/usr/local/sbin:$PATH"
 
+# MacTex
+if [[ -e /usr/local/texlive/2013/bin/x86_64-darwin ]]; then
+  export PATH="$PATH:/usr/local/texlive/2013/bin/x86_64-darwin"
+fi
+
 # todo.txt
 if [[ -e $HOME/Dropbox/todo/todo.sh ]]; then
   alias t="$HOME/Dropbox/todo/todo.sh"
