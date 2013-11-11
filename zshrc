@@ -158,13 +158,13 @@ fi
 
 # todo.txt
 if [[ -e $HOME/Dropbox/todo/todo.sh ]]; then
-  alias t="$HOME/Dropbox/todo/todo.sh"
+  alias t="$HOME/Dropbox/todo/todo.sh -t"
   case `hostname` in
     swensonator*)
       $HOME/Dropbox/todo/todo.sh ls simple
       ;;
     *)
-      $HOME/Dropbox/todo/todo.sh ls simple
+      $HOME/Dropbox/todo/todo.sh ls 
       ;;
   esac
 fi
