@@ -32,4 +32,4 @@ set eol
 set softtabstop=2
 set tabstop=2
 set vb
-colorscheme Wombat
+"colorscheme Wombat
