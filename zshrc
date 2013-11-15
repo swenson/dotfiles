@@ -145,6 +145,11 @@ export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=256M"
 # Fix Java to not drive me crazy
 export _JAVA_OPTIONS="-Djava.awt.headless=true"
 
+# Set JAVA_HOME on Linux
+if [[ -e /usr/lib/jvm/java-7-openjdk-amd64 ]]; then
+  export JAVA_HOME=/usr/lib/jvm/java-7-openjdk-amd64
+fi
+
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
