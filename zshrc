@@ -169,3 +169,8 @@ if [[ -e $HOME/Dropbox/todo/todo.sh ]]; then
   esac
 fi
 
+# time.txt
+if [[ -e $HOME/Dropbox/time.txt-cli/clock.py ]]; then
+  alias clock="$HOME/Dropbox/time.txt-cli/clock.py"
+fi
+
