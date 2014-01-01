@@ -174,3 +174,9 @@ if [[ -e $HOME/Dropbox/time.txt-cli/clock.py ]]; then
   alias clock="$HOME/Dropbox/time.txt-cli/clock.py"
 fi
 
+# cuda
+if [[ -e /Developer/NVIDIA/CUDA-5.5 ]]; then
+  export PATH="/Developer/NVIDIA/CUDA-5.5/bin:$PATH"
+  export DYLD_LIBRARY_PATH="/Developer/NVIDIA/CUDA-5.5/lib:$DYLD_LIBRARY_PATH"
+fi
+
