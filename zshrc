@@ -205,3 +205,9 @@ if [[ -e /Developer/NVIDIA/CUDA-5.5 ]]; then
 fi
 
 alias git-delete-merged-branches='git branch --merged | grep -ve "*" | xargs -n 1 git branch -d'
+
+sshagent () {
+    . "${HOME}"/bin/sshagent
+}
+
+sshagent
