@@ -215,3 +215,6 @@ sshagent
 # smart moving
 autoload -U zmv
 alias mmv='noglob zmv -W'
+
+# Fix broken Python at least
+export PATH="/usr/local/bin:$PATH"
