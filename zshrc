@@ -87,6 +87,7 @@ case `uname` in
   #elif [[ -e '/Applications/Sublime Text 2.app' ]]; then
   #  alias subl='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl';
   #fi
+
   ;;
 esac
 
@@ -205,6 +206,14 @@ if [[ -e /Developer/NVIDIA/CUDA-5.5 ]]; then
 fi
 
 alias git-delete-merged-branches='git branch --merged | grep -ve "*" | xargs -n 1 git branch -d'
+
+# always homebrew / local/bin first
+export PATH="/usr/local/bin:$PATH"
+
+alias scala-ctags='ctags -R . --exclude=target --exclude=vendorv'
+
+# kill me
+export DYLD_LIBRARY_PATH=/usr/local/Cellar/curl/7.34.0/lib:$DYLD_LIBRARY_PATH
 
 sshagent () {
     . "${HOME}"/bin/sshagent
