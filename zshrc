@@ -227,3 +227,7 @@ alias mmv='noglob zmv -W'
 
 # Fix broken Python at least
 export PATH="/usr/local/bin:$PATH"
+
+for file in $(find $HOME -maxdepth 1 -name '.zshrc.*'); do
+  source $file
+done
