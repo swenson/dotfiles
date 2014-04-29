@@ -110,9 +110,9 @@ export EDITOR='vim'
 # export ARCHFLAGS="-arch x86_64"
 
 # rbenv
-if [[ -e `which rbenv` ]]; then
-  eval "$(rbenv init -)"
-fi
+#if [[ -e `which rbenv` ]]; then
+#  eval "$(rbenv init -)"
+#fi
 
 function breakvpn() {
     gw=`netstat -arn | grep -e '^default' | awk '{print $2}'`
