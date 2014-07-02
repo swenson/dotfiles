@@ -45,7 +45,7 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git osx virtualenv rails ruby python sudo sublime scala screen rsync pip mvn golang brew)
+plugins=(git git-extras git-remote-branch osx virtualenv ruby rails python sudo sublime scala screen rsync pip mvn golang brew)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -231,3 +231,12 @@ export PATH="/usr/local/bin:$PATH"
 for file in $(find $HOME -maxdepth 1 -name '.zshrc.*'); do
   source $file
 done
+
+[ -s "/Users/swenson/.nvm/nvm.sh" ] && . "/Users/swenson/.nvm/nvm.sh" # This loads nvm
+source /Users/swenson/.rvm/scripts/rvm
+
+# fix git tab completion
+unalias git
+
+source $(brew --prefix nvm)/nvm.sh
+export NVM_DIR=~/.nvm
