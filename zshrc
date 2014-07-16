@@ -93,9 +93,9 @@ esac
 
 alias cd..='cd ..'
 
-export ANDROID_HOME="$HOME/android"
+export ANDROID_HOME="$HOME/android/sdk"
 
-export PATH="$PATH:$HOME/android/tools:$HOME/android/platform-tools"
+export PATH="$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools"
 # Use good Ruby
 export PATH="/usr/local/Cellar/ruby/1.9.3-p194/bin:$PATH"
 
@@ -134,6 +134,12 @@ if [[ -e $HOME/go ]]; then
   export GOROOT=$HOME/go
   export PATH="$PATH:$GOROOT/bin"
 fi
+
+if [[ -e $HOME/gopath ]]; then
+  export GOPATH=$HOME/gopath
+  export PATH="$PATH:$GOPATH/bin"
+fi
+
 
 if [[ -e $HOME/QSTK ]]; then
   source $HOME/QSTK/local.sh
@@ -233,10 +239,13 @@ for file in $(find $HOME -maxdepth 1 -name '.zshrc.*'); do
 done
 
 [ -s "/Users/swenson/.nvm/nvm.sh" ] && . "/Users/swenson/.nvm/nvm.sh" # This loads nvm
-source /Users/swenson/.rvm/scripts/rvm
+#source /Users/swenson/.rvm/scripts/rvm
 
 # fix git tab completion
-unalias git
+#unalias git
 
 source $(brew --prefix nvm)/nvm.sh
 export NVM_DIR=~/.nvm
+
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+export PYENV_ROOT=/usr/local/opt/pyenv
