@@ -82,6 +82,8 @@ case `uname` in
   Darwin)
   export LSCOLORS=Exfxcxdxbxegedabagacad
   alias ls='ls -FG'
+  # boot2docker
+  export DOCKER_HOST="tcp://192.168.59.103:2375"
   #if [[ -e '/Applications/Sublime Text.app' ]]; then
   #  alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl';
   #elif [[ -e '/Applications/Sublime Text 2.app' ]]; then
@@ -239,7 +241,8 @@ for file in $(find $HOME -maxdepth 1 -name '.zshrc.*'); do
 done
 
 [ -s "/Users/swenson/.nvm/nvm.sh" ] && . "/Users/swenson/.nvm/nvm.sh" # This loads nvm
-#source /Users/swenson/.rvm/scripts/rvm
+
+# source /Users/swenson/.rvm/scripts/rvm
 
 # fix git tab completion
 #unalias git
@@ -249,3 +252,6 @@ export NVM_DIR=~/.nvm
 
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
 export PYENV_ROOT=/usr/local/opt/pyenv
+#[[ -s "/Users/swenson/.gvm/scripts/gvm" ]] && source "/Users/swenson/.gvm/scripts/gvm"
+
+alias agq='ag -Q'
