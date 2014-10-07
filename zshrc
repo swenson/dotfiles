@@ -194,7 +194,7 @@ if [[ -e $HOME/Dropbox/todo/todo.sh ]]; then
   alias t="$HOME/Dropbox/todo/todo.sh -t"
   case `hostname` in
     swensonator*)
-      $HOME/Dropbox/todo/todo.sh ls simple
+      #$HOME/Dropbox/todo/todo.sh ls simple
       ;;
     *)
       $HOME/Dropbox/todo/todo.sh ls -simple
@@ -255,3 +255,10 @@ export PYENV_ROOT=/usr/local/opt/pyenv
 #[[ -s "/Users/swenson/.gvm/scripts/gvm" ]] && source "/Users/swenson/.gvm/scripts/gvm"
 
 alias agq='ag -Q'
+
+case `hostname` in
+  swensonator*) # simple
+    export JAVA_HOME=$(/usr/libexec/java_home)
+    ;;
+esac
+ 
