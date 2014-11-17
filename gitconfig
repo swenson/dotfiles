@@ -1,12 +1,17 @@
-[color]
-  ui = true
 [user]
   name = Christopher Swenson
+  email = chris@caswenson.com
   signingkey = 7A726488
+
+[color]
+  ui = auto
+
 [push]
   default = tracking
+
 [branch]
   autosetuprebase = always
+
 [alias]
   ap = add -p
   b = branch
@@ -20,18 +25,32 @@
   prom = pull --rebase origin master
   prum = pull --rebase upstream master
   po = push origin
+
 [help]
   autocorrect = 10
 
 [code]
+
 [core]
   excludesfile = /Users/swenson/.gitignore
-[hub]
-  host = github.banksimple.com
+
 [difftool "Kaleidoscope"]
   cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+
 [mergetool "Kaleidoscope"]
   cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
   trustExitCode = true
+
 [mergetool]
   keepBackup = true
+
+[filter "media"]
+  required = true
+  clean = git media clean %f
+  smudge = git media smudge %f
+
+[hub]
+  protocol = https
+
+[url "git@github.com:"]
+  insteadOf = https://github.com/
