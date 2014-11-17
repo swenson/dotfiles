@@ -25,6 +25,7 @@
   prom = pull --rebase origin master
   prum = pull --rebase upstream master
   po = push origin
+  recent = for-each-ref --sort=-committerdate refs/heads/
 
 [help]
   autocorrect = 10
