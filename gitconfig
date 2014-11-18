@@ -12,6 +12,28 @@
 [branch]
   autosetuprebase = always
 
+[help]
+  autocorrect = 10
+
+[code]
+
+[core]
+  excludesfile = /Users/swenson/.gitignore
+
+[mergetool]
+  keepBackup = true
+
+[filter "media"]
+  required = true
+  clean = git media clean %f
+  smudge = git media smudge %f
+
+[hub]
+  protocol = https
+
+[url "git@github.com:"]
+  insteadOf = https://github.com/
+
 [alias]
   ap = add -p
   b = branch
@@ -27,31 +49,35 @@
   po = push origin
   recent = for-each-ref --sort=-committerdate refs/heads/
 
-[help]
-  autocorrect = 10
+  ; thanks Steve Losh (sjl):
+  ; BEGIN KALEIDOSCOPE SECTION
+  ; GAZE INTO THE ABYSS
 
-[code]
+  ; Find all commits in the given ref that aren't also in master
+  ; TODO: Make this take a second optional argument
+  find-unmerged-commits = "!sh -c 'git log $1 --format='''%H''' --not master --' -"
+  find-unmerged-commits-for = "!sh -c 'git log $1 --format='''%H''' --not $2 --' -"
 
-[core]
-  excludesfile = /Users/swenson/.gitignore
+  ; ksdiff is the bare kaleidoscope difftool alias
+  ; ksdiffid is the one that expects $KSID to be set
+  ksdiff = difftool -y -t Kaleidoscope
+  ksdiffid = difftool -y -t KaleidoscopeWithId
 
-[difftool "Kaleidoscope"]
-  cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
+  ; ksdiffwith opens a diff of (current revision)->(given revision)
+  ksdiffwith = "!sh -c 'git ksdiff HEAD..$1' -"
 
-[mergetool "Kaleidoscope"]
-  cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-  trustExitCode = true
+  ; ksshow will open a single specific commit in kaleidoscope
+  ; it includes the commit log info as a separate file
+  ksshow = "!sh -c 'export KSID=`uuidgen`; git log -n1 $1 > .git/LOG_MESSAGE_$KSID; ksdiff --partial-changeset --UUID $KSID -- /dev/null .git/LOG_MESSAGE_$KSID; git ksdiffid $1^..$1; ksdiff --mark-changeset-as-closed $KSID' -"
 
-[mergetool]
-  keepBackup = true
+  ; ksreview takes a branch, finds all commits in that branch that aren't
+  ; merged into master, and opens them one-by-one with ksshow.  It's good for
+  ; reviewing pull requests.
+  ksreview = "!sh -c 'git find-unmerged-commits $1 | xargs -n1 git ksshow' -"
+  ksreviewfor = "!sh -c 'git find-unmerged-commits-for $1 $2 | xargs -n1 git ksshow' -"
 
-[filter "media"]
-  required = true
-  clean = git media clean %f
-  smudge = git media smudge %f
+  ; review takes a pull request URL and reviews it
+  ; only works if you have the PR-fetching turned on and shit
+  review = "!sh -c 'git fetch upstream && git ksreviewfor `echo $1 | sed -Ee \"s_.*pull/([0-9]+)_upstream/pull/\\1_\"` upstream/master' -"
 
-[hub]
-  protocol = https
-
-[url "git@github.com:"]
-  insteadOf = https://github.com/
+  ; END KALEIDOSCOPE SECTION
