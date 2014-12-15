@@ -142,6 +142,9 @@ if [[ -e $HOME/gopath ]]; then
   export PATH="$PATH:$GOPATH/bin"
 fi
 
+if [[ -e /usr/local/opt/go/libexec/bin ]]; then
+  export PATH="$PATH:/usr/local/opt/go/libexec/bin"
+fi
 
 if [[ -e $HOME/QSTK ]]; then
   source $HOME/QSTK/local.sh
