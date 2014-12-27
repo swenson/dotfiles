@@ -258,6 +258,11 @@ export PYENV_ROOT=/usr/local/opt/pyenv
 #[[ -s "/Users/swenson/.gvm/scripts/gvm" ]] && source "/Users/swenson/.gvm/scripts/gvm"
 
 alias agq='ag -Q'
+alias ffind='find . -name'
+function ffind() {
+  find . -name "$1"
+}
+
 
 case `hostname` in
   swensonator*) # simple
