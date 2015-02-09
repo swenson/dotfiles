@@ -275,3 +275,10 @@ if [ -e /Developer/NVIDIA ]; then
   export DYLD_LIBRARY_PATH=/Developer/NVIDIA/CUDA-6.5/lib:$DYLD_LIBRARY_PATH
 fi
 
+alias curlj="curl -H 'Content-Type: application/json'"
+
+alias gdiff='git diff -w'
+
+if [ -e $HOME/.zsh_local ]; then
+  source ~/.zsh_local
+fi
