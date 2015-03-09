@@ -200,7 +200,7 @@ if [[ -e $HOME/Dropbox/todo/todo.sh ]]; then
       #$HOME/Dropbox/todo/todo.sh ls simple
       ;;
     *)
-      $HOME/Dropbox/todo/todo.sh ls -simple
+      #$HOME/Dropbox/todo/todo.sh ls -simple
       ;;
   esac
 fi
