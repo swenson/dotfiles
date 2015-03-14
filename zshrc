@@ -279,6 +279,8 @@ alias curlj="curl -H 'Content-Type: application/json'"
 
 alias gdiff='git diff -w'
 
+alias port='nc -vzw5'
+
 if [ -e $HOME/.zsh_local ]; then
   source ~/.zsh_local
 fi
