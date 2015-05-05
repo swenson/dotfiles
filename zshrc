@@ -188,8 +188,8 @@ export PATH="/usr/local/heroku/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 
 # MacTex
-if [[ -e /usr/local/texlive/2013/bin/x86_64-darwin ]]; then
-  export PATH="$PATH:/usr/local/texlive/2013/bin/x86_64-darwin"
+if [[ -e /usr/local/texlive/2014/bin/x86_64-darwin ]]; then
+  export PATH="$PATH:/usr/local/texlive/2014/bin/x86_64-darwin"
 fi
 
 # todo.txt
@@ -258,7 +258,6 @@ export PYENV_ROOT=/usr/local/opt/pyenv
 #[[ -s "/Users/swenson/.gvm/scripts/gvm" ]] && source "/Users/swenson/.gvm/scripts/gvm"
 
 alias agq='ag -Q'
-alias ffind='find . -name'
 function ffind() {
   find . -name "$1"
 }
