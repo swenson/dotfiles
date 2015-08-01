@@ -53,7 +53,7 @@ source $ZSH/oh-my-zsh.sh
 
 #autoload -U prompt_wunjo_setup; prompt_wunjo_setup
 
-export LAST_SUCCESS="%(0?."\:\)"."\:\(")"
+export LAST_SUCCESS="%(0?."😀"."😂")"
 
 autoload -Uz vcs_info
 function precmd() {
@@ -63,7 +63,7 @@ function precmd() {
 }
 
 function reset_prompt() {
-  export PROMPT="%{$fg[white]%}[%B%{$fg[red]%}%n%{$fg[magenta]%}@%b%{$fg[cyan]%}%m%B %{$fg[green]%}%*%b%{$fg[white]%}] %B%{$fg[blue]%}%C%{$fg[green]%} $LAST_SUCCESS %{$fg[magenta]%}%(!.#.$) %b%{$fg[white]%}"
+  export PROMPT="%{$fg[white]%}[%B%{$fg[red]%}$name%{$fg[magenta]%}@%b%{$fg[cyan]%}%m%B %{$fg[green]%}%*%b%{$fg[white]%}] %B%{$fg[blue]%}%C%{$fg[green]%} $LAST_SUCCESS %{$fg[magenta]%}%(!.#.$) %b%{$fg[white]%}"
   export RPROMPT="%{$fg[red]%}$VCS_STATE%{$fg[white]%}"
 }
 
@@ -73,6 +73,16 @@ function hop() {
   ssh -t $1 ssh -t $2
   #`ipython --no-color-info --quiet --no-pprint --colors=NoColor -c "hop('$1', '$2', '$3')"`
 }
+
+export name="$USER"
+case $USER in
+  swenson)
+    export name="🍰"
+    ;;
+  root)
+    export name="☃"
+    ;;
+esac
 
 
 case `uname` in
@@ -112,9 +122,9 @@ export EDITOR='vim'
 # export ARCHFLAGS="-arch x86_64"
 
 # rbenv
-#if [[ -e `which rbenv` ]]; then
-#  eval "$(rbenv init -)"
-#fi
+if [[ -e `which rbenv` ]]; then
+  eval "$(rbenv init -)"
+fi
 
 function breakvpn() {
     gw=`netstat -arn | grep -e '^default' | awk '{print $2}'`
@@ -168,7 +178,7 @@ if [[ -e /usr/bin/vagrant ]]; then
   alias vagrant=/usr/bin/vagrant
 fi
 
-#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=256M"
 
