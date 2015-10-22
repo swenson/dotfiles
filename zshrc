@@ -92,8 +92,6 @@ case `uname` in
   Darwin)
   export LSCOLORS=Exfxcxdxbxegedabagacad
   alias ls='ls -FG'
-  # boot2docker
-  export DOCKER_HOST="tcp://192.168.59.103:2375"
   #if [[ -e '/Applications/Sublime Text.app' ]]; then
   #  alias subl='/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl';
   #elif [[ -e '/Applications/Sublime Text 2.app' ]]; then
@@ -289,6 +287,13 @@ alias curlj="curl -H 'Content-Type: application/json'"
 alias gdiff='git diff -w'
 
 alias port='nc -vzw5'
+
+
+# docker-machine
+if [ -e $(which docker-machine) ]; then
+  docker-machine start default > /dev/null;
+  eval $(docker-machine env default);
+fi
 
 if [ -e $HOME/.zsh_local ]; then
   source ~/.zsh_local
