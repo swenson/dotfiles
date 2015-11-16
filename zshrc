@@ -225,6 +225,7 @@ if [[ -e /Developer/NVIDIA/CUDA-5.5 ]]; then
 fi
 
 alias git-delete-merged-branches='git branch --merged | grep -ve "*" | xargs -n 1 git branch -d'
+alias git-delete-merged-remote-branches='git branch -r --merged | grep -ve master | sed "s/origin\///" | xargs -n 1 git push --delete origin'
 
 # always homebrew / local/bin first
 export PATH="/usr/local/bin:$PATH"
