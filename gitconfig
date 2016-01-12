@@ -48,6 +48,7 @@
   prum = pull --rebase upstream master
   po = push origin
   recent = for-each-ref --sort=-committerdate refs/heads/
+  squash = rebase -i master --autosquash
 
   ; thanks Steve Losh (sjl):
   ; BEGIN KALEIDOSCOPE SECTION
