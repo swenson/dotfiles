@@ -290,6 +290,8 @@ alias gdiff='git diff -w'
 alias port='nc -vzw5'
 
 
+if (which htop >& /dev/null); then alias top="$(which htop)"; fi
+
 # docker-machine
 if [ -e $(which docker-machine) ]; then
   docker-machine start default > /dev/null;
