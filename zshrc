@@ -53,7 +53,8 @@ source $ZSH/oh-my-zsh.sh
 
 #autoload -U prompt_wunjo_setup; prompt_wunjo_setup
 
-export LAST_SUCCESS="%(0?."😀"."😂")"
+# export LAST_SUCCESS="%(0?."😀"."😂")"
+export LAST_SUCCESS="%(0?.":\)".":\(")"
 
 autoload -Uz vcs_info
 function precmd() {
@@ -77,10 +78,10 @@ function hop() {
 export name="$USER"
 case $USER in
   swenson)
-    export name="🍰"
+    export name="cupcake"
     ;;
   root)
-    export name="☃"
+    export name="admiral-cupcake"
     ;;
 esac
 
@@ -122,6 +123,7 @@ export EDITOR='vim'
 # rbenv
 if [[ -e `which rbenv` ]]; then
   eval "$(rbenv init -)"
+  export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"
 fi
 
 function breakvpn() {
@@ -140,13 +142,18 @@ if [[ -e $HOME/nacl_sdk ]]; then
   export NACL_SDK_ROOT=$HOME/nacl_sdk
 fi
 
-if [[ -e $HOME/go ]]; then
-  export GOROOT=$HOME/go
-  export PATH="$PATH:$GOROOT/bin"
-fi
-
 if [[ -e $HOME/gopath ]]; then
   export GOPATH=$HOME/gopath
+  export PATH="$PATH:$GOPATH/bin"
+fi
+
+if [[ -e /usr/local/go ]]; then
+  export GOROOT=/usr/local/go
+  export PATH="$PATH:/usr/local/go/bin"
+fi
+
+if [[ -e $HOME/projects/go ]]; then
+  export GOPATH=$HOME/projects/go
   export PATH="$PATH:$GOPATH/bin"
 fi
 
@@ -252,19 +259,34 @@ for file in $(find $HOME -maxdepth 1 -name '.zshrc.*'); do
   source $file
 done
 
-[ -s "/Users/swenson/.nvm/nvm.sh" ] && . "/Users/swenson/.nvm/nvm.sh" # This loads nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+
 
 # source /Users/swenson/.rvm/scripts/rvm
 
 # fix git tab completion
 #unalias git
 
-source $(brew --prefix nvm)/nvm.sh
-export NVM_DIR=~/.nvm
+case `uname` in
+  Darwin)
+    source $(brew --prefix nvm)/nvm.sh
+    export NVM_DIR=~/.nvm
+    ;;
+esac
 
-if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-export PYENV_ROOT=/usr/local/opt/pyenv
 #[[ -s "/Users/swenson/.gvm/scripts/gvm" ]] && source "/Users/swenson/.gvm/scripts/gvm"
+#
+#
+if [[ -e /usr/local/opt/pyenv/bin ]]; then
+  export PATH="/usr/local/opt/pyenv/bin:$PATH"
+fi
+
+if [[ -e $HOME/.pyenv ]]; then
+  export PATH="/home/swenson/.pyenv/bin:$PATH"
+fi
+if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
+if which pyenv > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 alias agq='ag -Q'
 function ffind() {
@@ -293,7 +315,7 @@ alias port='nc -vzw5'
 if (which htop >& /dev/null); then alias top="$(which htop)"; fi
 
 # docker-machine
-if [ -e $(which docker-machine) ]; then
+if [[ -e $(which docker-machine) ]]; then
   docker-machine start default > /dev/null;
   eval $(docker-machine env default);
 fi
