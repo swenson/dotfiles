@@ -133,7 +133,7 @@ function breakvpn() {
 }
 
 if [[ -e `which sshagent` ]]; then
-  sshagent
+  # sshagent
 fi
 
 export GNUTERM=x11

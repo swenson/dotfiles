@@ -1,10 +1,11 @@
 [user]
   name = Christopher Swenson
+  # email = cswenson@twilio.com
   email = chris@caswenson.com
   signingkey = 7A726488
 
 [color]
-  ui = auto
+	ui = true
 
 [push]
   default = tracking
@@ -19,6 +20,7 @@
 
 [core]
   excludesfile = /Users/swenson/.gitignore
+	pager = /home/swenson/bin/diff-so-fancy | less --tabs=4 -RFX
 
 [mergetool]
   keepBackup = true
@@ -82,3 +84,15 @@
   review = "!sh -c 'git fetch upstream && git ksreviewfor `echo $1 | sed -Ee \"s_.*pull/([0-9]+)_upstream/pull/\\1_\"` upstream/master' -"
 
   ; END KALEIDOSCOPE SECTION
+[color "diff-highlight"]
+	oldNormal = red bold
+	oldHighlight = red bold 52
+	newNormal = green bold
+	newHighlight = green bold 22
+[color "diff"]
+	meta = yellow
+	frag = magenta bold
+	commit = yellow bold
+	old = red bold
+	new = green bold
+	whitespace = red reverse
