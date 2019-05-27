@@ -98,6 +98,8 @@ case `uname` in
   #elif [[ -e '/Applications/Sublime Text 2.app' ]]; then
   #  alias subl='/Applications/Sublime\ Text\ 2.app/Contents/SharedSupport/bin/subl';
   #fi
+  #
+  alias lock="osascript -e 'tell application \"Finder\" to sleep'"
 
   ;;
 esac
@@ -185,7 +187,16 @@ fi
 
 #export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
-export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=256M"
+
+if (which mvn >& /dev/null); then
+  m=$(mvn --version 2>/dev/null | grep -e 'Java version' | cut -d '.' -f2)
+  # java 8 doesn't have permgen
+  if [ "$m" -gt "7" ]; then
+    export MAVEN_OPTS="-Xmx1024m"
+  else
+    export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=256M"
+  fi
+fi
 
 
 # Fix Java to not drive me crazy
@@ -324,6 +335,10 @@ if [[ -e $(which docker-machine) ]]; then
   docker-machine start default > /dev/null;
   eval $(docker-machine env default);
 fi
+
+function peek() {
+  tmux split-window -p 33 "$EDITOR" "$@" || exit;
+}
 
 if [ -e $HOME/.zsh_local ]; then
   source ~/.zsh_local

@@ -42,3 +42,5 @@ endif
 if &term == "screen" || &term == "xterm"
   set title
 endif
+
+au BufEnter /private/tmp/crontab.* setl backupcopy=yes
