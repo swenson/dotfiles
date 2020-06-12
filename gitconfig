@@ -82,6 +82,14 @@
   ; review takes a pull request URL and reviews it
   ; only works if you have the PR-fetching turned on and shit
   review = "!sh -c 'git fetch upstream && git ksreviewfor `echo $1 | sed -Ee \"s_.*pull/([0-9]+)_upstream/pull/\\1_\"` upstream/master' -"
+	new = !git init && git symbolic-ref HEAD refs/heads/canon
+	retcon = rebase
+	op = blame
+	clip-show = log
+	fanfic = branch
+	yeet = push
+	yeet-retcon = push --force
+	yoink = pull --rebase
 
   ; END KALEIDOSCOPE SECTION
 [color "diff-highlight"]
