@@ -45,7 +45,8 @@ ZSH_THEME="robbyrussell"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git git-extras git-remote-branch osx virtualenv ruby rails python sudo sublime scala screen rsync pip mvn golang brew)
+#plugins=(git git-extras git-remote-branch macos virtualenv ruby rails python sudo sublime scala screen rsync pip mvn golang brew)
+plugins=(git git-extras macos virtualenv ruby rails python sudo sublime scala screen rsync pip mvn golang brew)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -91,6 +92,8 @@ case `uname` in
   alias ls='ls -F --color'
   ;;
   Darwin)
+  # default of 'x11' causes all plots to fail on macOS by default, but 'qt' works
+  export GNUTERM=qt
   export LSCOLORS=Exfxcxdxbxegedabagacad
   alias ls='ls -FG'
   #if [[ -e '/Applications/Sublime Text.app' ]]; then
@@ -114,6 +117,9 @@ export PATH="/usr/local/Cellar/ruby/1.9.3-p194/bin:$PATH"
 
 # Local stuff
 export PATH="$HOME/bin:$PATH"
+if [ -e $HOME/.local/bin ]; then
+  export PATH="$HOME/.local/bin:$PATH"
+fi
 
 export MANPATH="/usr/local/man:$MANPATH"
 
@@ -191,11 +197,11 @@ fi
 if (which mvn >& /dev/null); then
   m=$(mvn --version 2>/dev/null | grep -e 'Java version' | cut -d '.' -f2)
   # java 8 doesn't have permgen
-  if [ "$m" -gt "7" ]; then
-    export MAVEN_OPTS="-Xmx1024m"
-  else
-    export MAVEN_OPTS="-Xmx1024m -XX:MaxPermSize=256M"
-  fi
+  #if [ "$m" -gt "7" ]; then
+  #  export MAVEN_OPTS="-Xmx1024m"
+  #else
+  #  export MAVEN_OPTS="-Xmx1024m" # -XX:MaxPermSize=256M"
+  #fi
 fi
 
 
@@ -212,11 +218,6 @@ export PATH="/usr/local/heroku/bin:$PATH"
 
 # brew sbin
 export PATH="/usr/local/sbin:$PATH"
-
-# MacTex
-if [[ -e /usr/local/texlive/2014/bin/x86_64-darwin ]]; then
-  export PATH="$PATH:/usr/local/texlive/2014/bin/x86_64-darwin"
-fi
 
 # todo.txt
 if [[ -e $HOME/Dropbox/todo/todo.sh ]]; then
@@ -275,7 +276,9 @@ done
 
 function nvm_load() {
   export NVM_DIR="$HOME/.nvm"
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
 }
 
 
@@ -284,14 +287,7 @@ function nvm_load() {
 # fix git tab completion
 #unalias git
 
-case `uname` in
-  Darwin)
-    source $(brew --prefix nvm)/nvm.sh
-    export NVM_DIR=~/.nvm
-    ;;
-esac
-
-#[[ -s "/Users/swenson/.gvm/scripts/gvm" ]] && source "/Users/swenson/.gvm/scripts/gvm"
+[[ -s "/Users/swenson/.gvm/scripts/gvm" ]] && source "/Users/swenson/.gvm/scripts/gvm"
 #
 #
 if [[ -e /usr/local/opt/pyenv/bin ]]; then
@@ -302,7 +298,7 @@ if [[ -e $HOME/.pyenv ]]; then
   export PATH="/home/swenson/.pyenv/bin:$PATH"
 fi
 if which pyenv > /dev/null; then eval "$(pyenv init -)"; fi
-if which pyenv > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+#if which pyenv > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 
 alias agq='ag -Q'
 function ffind() {
@@ -339,6 +335,10 @@ fi
 function peek() {
   tmux split-window -p 33 "$EDITOR" "$@" || exit;
 }
+
+if [[ -e /usr/local/opt/openjdk/bin ]]; then
+  export PATH="/usr/local/opt/openjdk/bin:$PATH"
+fi
 
 if [ -e $HOME/.zsh_local ]; then
   source ~/.zsh_local
