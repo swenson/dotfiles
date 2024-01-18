@@ -65,7 +65,8 @@ function precmd() {
 }
 
 function reset_prompt() {
-  export PROMPT="%{$fg[white]%}[%B%{$fg[red]%}$name%{$fg[magenta]%}@%b%{$fg[cyan]%}%m%B %{$fg[green]%}%*%b%{$fg[white]%}] %B%{$fg[blue]%}%C%{$fg[green]%} $LAST_SUCCESS %{$fg[magenta]%}%(!.#.$) %b%{$fg[white]%}"
+  #export PROMPT="%{$fg[white]%}[%B%{$fg[red]%}$name%{$fg[magenta]%}@%b%{$fg[cyan]%}%m%B %{$fg[green]%}%*%b%{$fg[white]%}] %B%{$fg[blue]%}%C%{$fg[green]%} $LAST_SUCCESS %{$fg[magenta]%}%(!.#.$) %b%{$fg[white]%}"
+  export PROMPT="%{$fg[white]%}[%B%{$fg[red]%}swenson%{$fg[magenta]%}@%b%{$fg[cyan]%}hashicorp%B %{$fg[green]%}%*%b%{$fg[white]%}] %B%{$fg[blue]%}%C%{$fg[green]%} $LAST_SUCCESS %{$fg[magenta]%}%(!.#.$) %b%{$fg[white]%}"
   export RPROMPT="%{$fg[red]%}$VCS_STATE%{$fg[white]%}"
 }
 
@@ -287,9 +288,17 @@ function nvm_load() {
 # fix git tab completion
 #unalias git
 
-[[ -s "/Users/swenson/.gvm/scripts/gvm" ]] && source "/Users/swenson/.gvm/scripts/gvm"
-#
-#
+#[[ -s "/Users/swenson/.gvm/scripts/gvm" ]] && source "/Users/swenson/.gvm/scripts/gvm"
+
+#case `uname` in
+#  Darwin)
+#    source $(brew --prefix nvm)/nvm.sh
+#    export NVM_DIR=~/.nvm
+#    ;;
+#esac
+
+#[[ -s "/Users/swenson/.gvm/scripts/gvm" ]] && source "/Users/swenson/.gvm/scripts/gvm"
+
 if [[ -e /usr/local/opt/pyenv/bin ]]; then
   export PATH="/usr/local/opt/pyenv/bin:$PATH"
 fi
